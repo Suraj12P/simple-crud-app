@@ -43,16 +43,17 @@ app.post('/api/products' ,async (req,res)=>{
 
 
 
-mongoose.connect('mongodb+srv://surajpmnr:AKlfnw2mPCPsJ4I1@cluster0.10y6jtc.mongodb.net/Node-API?retryWrites=true&w=majority&appName=Cluster0')
-    .then(() => {
-        console.log('Connected!')
-        app.listen(3000, () => {
-            console.log("app is listening on port 3000")
-        })
-    })
-    .catch(() => {
-        console.log("connection failed")
+mongoose
+  .connect(process.env.MONGO_URI)
+  .then(() => {
+    console.log("Connected!");
+    app.listen(3000, () => {
+      console.log("app is listening on port 3000");
     });
+  })
+  .catch(() => {
+    console.log("connection failed");
+  });
 
 
 /*
